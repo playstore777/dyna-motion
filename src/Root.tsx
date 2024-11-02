@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Composition, continueRender, delayRender } from "remotion";
 
 import { CardProvider, useCardContext } from "./Features/CardContext";
-import { API_RESPONSE, videoDimensions } from "./constants";
+import { videoDimensions } from "./constants";
 import { Low } from "./Low";
 
 const fps = 30;
@@ -21,7 +21,11 @@ export const RemotionRoot: React.FC = () => {
   useEffect(() => {
     const fetchAPIData = async () => {
       try {
-        const tempCards = API_RESPONSE; // dummy placeholder for response
+        const response = await fetch(
+          "https://low-middleware.vercel.app/api/trello-list-data"
+        );
+        const tempCards = await response.json(); // dummy placeholder for response
+        // const tempCards = API_RESPONSE; // dummy placeholder for response
         const doneCards = tempCards.map((card: { idShort: number }) => {
           return card?.idShort;
         });
