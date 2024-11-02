@@ -1,0 +1,41 @@
+name: Generate Video on Trello Changes
+
+on:
+  repository_dispatch:
+    types: [trigger_build]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Switch to generated-videos branch
+        run: |
+          git checkout -b generated-videos || git checkout generated-videos
+
+      # - name: Pull latest changes
+      #   run: |
+      #     git pull origin generated-videos --rebase
+
+      - name: Run the video generation script
+        run: |
+          echo "Generating video based on Trello changes..."
+          npm install
+          npm run build
+
+      - name: Set up Git user
+        run: |
+          git config --global user.email "ps494122@gmail.com"
+          git config --global user.name "Mohammed Adil Sharif"
+
+      - name: Add new generated video
+        run: |
+          git add out/video.mp4
+          git commit -m "Add new generated video"
+
+      - name: Force push to generated-videos branch
+        run: |
+          git push origin generated-videos --force
