@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import { AbsoluteFill, Audio, Sequence, useCurrentFrame } from "remotion";
 
+import { useCardContext } from "./FeatureDetails/CardContext";
 import { cardsList } from "./FeatureDetails/constants";
 import Card from "./FeatureDetails/Card";
-import { featureDetailsDuration } from "./Root";
 
 type SingleCard = {
   title: string;
@@ -24,12 +24,17 @@ type SingleCard = {
 
 interface props {
   doneCardIds: number[];
+  isAudioEnabled?: boolean;
 }
 
-export const FeatureDetails: React.FC<props> = ({ doneCardIds }) => {
+export const FeatureDetails: React.FC<Readonly<props>> = ({
+  doneCardIds,
+  isAudioEnabled = true,
+}) => {
   const [listOfCards, setListOfCards] = useState<SingleCard[]>([]);
 
   const currentFrame = useCurrentFrame();
+  const { totalDurationInFrames } = useCardContext();
 
   useEffect(() => {
     const tempList = cardsList.filter((card) => {
@@ -56,8 +61,8 @@ export const FeatureDetails: React.FC<props> = ({ doneCardIds }) => {
         return (
           <React.Fragment key={index}>
             <Sequence
-              from={(index * featureDetailsDuration) / listOfCards.length}
-              durationInFrames={featureDetailsDuration / listOfCards.length}
+              from={(index * totalDurationInFrames) / listOfCards.length}
+              durationInFrames={totalDurationInFrames / listOfCards.length}
               style={{
                 justifyContent: "center",
                 alignItems: "center",
@@ -70,14 +75,16 @@ export const FeatureDetails: React.FC<props> = ({ doneCardIds }) => {
                 isHighlighted={
                   index ===
                   Math.floor(
-                    currentFrame / (featureDetailsDuration / listOfCards.length)
+                    currentFrame / (totalDurationInFrames / listOfCards.length)
                   )
                 } // Change highlighted card every second
                 title={card?.title}
                 imgSrc={card?.imgSrc}
                 details={card?.details}
               />
-              {card?.audioSrc && <Audio src={card?.audioSrc} />}
+              {isAudioEnabled && card?.audioSrc && (
+                <Audio src={card?.audioSrc} />
+              )}
             </Sequence>
           </React.Fragment>
         );

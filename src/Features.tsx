@@ -11,7 +11,7 @@ import {
 
 import { useCardContext } from "./Features/CardContext";
 import { FakeCursor } from "./Features/FakeCursor";
-import { API_RESPONSE } from "./constants";
+// import { API_RESPONSE } from "./constants";
 import { Card } from "./Features/Card";
 import {
   cardHeight,
@@ -29,7 +29,15 @@ type SingleCard = {
   extraFrames?: number;
 };
 
-export const Features: React.FC = () => {
+interface props {
+  doneCardIds: number[];
+  isAudioEnabled?: boolean;
+}
+
+export const Features: React.FC<Readonly<props>> = ({
+  doneCardIds,
+  isAudioEnabled = true,
+}) => {
   const { numCards, setNumCards, totalDurationInFrames } = useCardContext();
   const [listOfCards, setListOfCards] = useState<SingleCard[]>([]);
   const [handle] = useState(() => delayRender());
@@ -41,15 +49,11 @@ export const Features: React.FC = () => {
     // Fetch API data dynamically when building the video
     const fetchAPIData = async () => {
       try {
-        const tempCards = API_RESPONSE;
-        const doneCards = tempCards.map((card: { idShort: number }) => {
-          return card.idShort;
-        });
         const tempList = cardsList.filter((card) => {
           return (
             (card.removeOnIdShort &&
-              !doneCards.includes(card.removeOnIdShort)) ||
-            (card.onIdShort && doneCards.includes(card.onIdShort)) ||
+              !doneCardIds.includes(card.removeOnIdShort)) ||
+            (card.onIdShort && doneCardIds.includes(card.onIdShort)) ||
             (!card.onIdShort && !card.removeOnIdShort)
           );
         });
@@ -63,7 +67,7 @@ export const Features: React.FC = () => {
       }
     };
     fetchAPIData();
-  }, [handle]);
+  }, [doneCardIds, handle]);
 
   useEffect(() => {
     setCursorPositions();
@@ -114,7 +118,7 @@ export const Features: React.FC = () => {
                 title={card.title}
                 imgSrc={card.imgSrc}
               />
-              {card.audioSrc && (
+              {isAudioEnabled && card.audioSrc && (
                 <Sequence
                   from={index ? (index * totalDurationInFrames) / numCards : 10}
                   durationInFrames={totalDurationInFrames / numCards}

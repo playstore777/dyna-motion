@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import classes from "./FancyText.module.css";
 import { FakeCursor } from "./FakeCursor";
 
@@ -24,18 +25,10 @@ const FancyText: React.FC<props> = ({
 
   useEffect(() => {
     const ml = document.querySelector("#middle-line") as HTMLElement;
-    console.dir(ml);
     setCursorPos({
       x: ml?.offsetLeft ? ml.offsetLeft + 140 : 0,
-      y: ml?.offsetTop ? ml.offsetTop + 100 : 0,
+      y: ml?.offsetTop ? ml.offsetTop : 0,
     });
-
-    // const timer = setTimeout(() => {
-    //   setIsHovering(true);
-    // }, 2000);
-    // return () => {
-    //   clearTimeout(timer);
-    // };
   }, []);
 
   const updateIsHovering = (value: boolean) => {
@@ -48,8 +41,10 @@ const FancyText: React.FC<props> = ({
         className={`${classes.fancyTextWrapper} ${isHovering ? classes.hovering : ""}`}
       >
         <span>{topLine}</span>
-        <span className={classes["sr-only"]}>{middleLine}</span>
-        <span id="middle-line" aria-hidden="true">
+        <span id="middle-line" className={classes["sr-only"]}>
+          {middleLine}
+        </span>
+        <span aria-hidden="true">
           {middleLine.length &&
             middleLine.split("").map((x, index) =>
               index === indexOfO ? (

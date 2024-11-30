@@ -35,7 +35,7 @@ export const cardsList = [
     },
   },
   {
-    removeOnIdShort: 12, // placeholder object for the object with onIdShort: 12, once the ticket is closed this will be replaced with the below object/card with onIdShort: 12
+    removeOnIdShort: 53, // placeholder object for the object with onIdShort: 53, once the ticket is closed this will be replaced with the below object/card with onIdShort: 53
     title: "Saves your time as a Writer",
     imgSrc: Brewing,
     audioSrc: WriteOnceAudio,
@@ -48,7 +48,7 @@ export const cardsList = [
     },
   },
   {
-    onIdShort: 12, // Once this ticket is closed, this will be displayed instead of the removeOnIdShort: 12 object/card
+    onIdShort: 53, // Once this ticket is closed, this will be displayed instead of the removeOnIdShort: 53 object/card
     title: "Saves your time as a Writer",
     imgSrc: Brewing,
     audioSrc: WriteOnceAudio,

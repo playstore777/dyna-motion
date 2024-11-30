@@ -1,6 +1,6 @@
 import ReusableCatOnDemand from "../assets/images/reusable_cat_ondemand.png";
 import ReusableOndemandAudio from "../assets/audios/reusable_stories_ondemand.mp3";
-import DictionaryAudio from "../assets/audios/dictionary and.mp3";
+import DictionaryAudio from "../assets/audios/dictionary.mp3";
 import ReusableAudio from "../assets/audios/reusable stories.mp3";
 import DictionaryCat from "../assets/images/dictionary_cat.png";
 import DarkModeAudio from "../assets/audios/here_you_get.mp3";
@@ -22,13 +22,13 @@ export const cardsList = [
     audioSrc: DictionaryAudio,
   },
   {
-    removeOnIdShort: 12, // placeholder object for the object with onIdShort: 12, once the ticket is closed this will be replaced with the below object/card with onIdShort: 12
+    removeOnIdShort: 53, // placeholder object for the object with onIdShort: 53, once the ticket is closed this will be replaced with the below object/card with onIdShort: 53
     title: "Reusable Stories",
     imgSrc: ReusableCat,
     audioSrc: ReusableAudio,
   },
   {
-    onIdShort: 12, // Once this ticket is closed, this will be displayed instead of the removeOnIdShort: 12 object/card
+    onIdShort: 53, // Once this ticket is closed, this will be displayed instead of the removeOnIdShort: 53 object/card
     title: "Reusable Stories on-demand",
     imgSrc: ReusableCatOnDemand,
     audioSrc: ReusableOndemandAudio,

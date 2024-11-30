@@ -28,7 +28,7 @@ interface props {
 }
 export const CardProvider: React.FC<Readonly<props>> = ({ children }) => {
   const [numCards, setNumCards] = useState(3); // Shared state for the number of cards
-  const [framesPerCard, setFramesPerCard] = useState(35);
+  const [framesPerCard, setFramesPerCard] = useState(40);
   const [totalDurationInFrames, setTotalDurationInFrames] = useState<number>(
     numCards * framesPerCard
   );
