@@ -13,13 +13,20 @@ const intro: React.CSSProperties = {
   fontWeight: "bold",
 };
 
-const FadeInText: React.FC<{ firstLine: string; secondLine: string }> = ({
-  firstLine,
-  secondLine,
-}) => {
+interface props {
+  firstLine: string;
+  secondLine: string;
+  isFast?: boolean;
+}
+
+const FadeInText: React.FC<props> = ({ firstLine, secondLine, isFast }) => {
   const frame = useCurrentFrame();
-  const introOpacity = interpolate(frame, [0, 15], [0, 1]);
-  const sitenameOpacity = interpolate(frame, [15, 30], [0, 1]);
+  const introOpacity = isFast
+    ? interpolate(frame, [0, 5], [0, 1])
+    : interpolate(frame, [0, 15], [0, 1]);
+  const sitenameOpacity = isFast
+    ? interpolate(frame, [5, 10], [0, 1])
+    : interpolate(frame, [15, 30], [0, 1]);
   return (
     <div
       style={{
