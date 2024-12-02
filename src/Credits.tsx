@@ -12,11 +12,11 @@ import {
 
 import JonnyBurger from "./assets/images/jonny-burger.png";
 import JeffDelaney from "./assets/images/jeff-delaney.png";
-import Oops from "./assets/audios/Ooops.mp3";
 import HackedText from "./reusableComponents/HackedText";
 import { FakeCursor } from "./FeatureDetails/FakeCursor";
 import { videoDimensions } from "./constants";
 import DisplayKey from "./Credits/DisplayKey";
+import Oops from "./assets/audios/Ooops.mp3";
 
 const START_FRAME = 40;
 
@@ -121,7 +121,6 @@ const Credits: React.FC = () => {
             style={{
               textAlign: "center",
               writingMode: "vertical-lr",
-              // transform: "rotate(270deg)",
               fontSize: "1.8rem",
               fontWeight: "bold",
             }}

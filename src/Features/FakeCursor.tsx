@@ -1,13 +1,22 @@
 import React, { useEffect } from "react";
+
 import { spring, useCurrentFrame, useVideoConfig } from "remotion";
 
-export const FakeCursor: React.FC<{
+interface props {
   x: number;
   y: number;
   defaultX?: number;
   defaultY?: number;
   onHover?: (value: boolean) => void;
-}> = ({ x, y, defaultX = 0, defaultY = 0, onHover }) => {
+}
+
+export const FakeCursor: React.FC<Readonly<props>> = ({
+  x,
+  y,
+  defaultX = 0,
+  defaultY = 0,
+  onHover,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
