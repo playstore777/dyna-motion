@@ -9,6 +9,11 @@
   </a>
 </p>
 
+<video controls>
+  <source src="https://playstore777.github.io/dyna-motion/out/video.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 Welcome to your Remotion project!
 
 ## Commands
