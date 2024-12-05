@@ -70,6 +70,7 @@ const Credits: React.FC = () => {
           style={{
             fontFamily: "'Space Mono', monospace",
             fontSize: "5rem",
+            color: "white",
           }}
         >
           Special Thanks to
