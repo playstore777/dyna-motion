@@ -2,9 +2,16 @@ import { linearTiming, TransitionSeries } from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
 import { Audio, AbsoluteFill } from "remotion";
 
-import { Features } from "./Features";
-import Intro from "./Intro";
+import { useCardContext as useFeatureDetailCardContext } from "./FeatureDetails/CardContext";
+import { useCardContext as useFeatureCardContext } from "./Features/CardContext";
+import vinyl from "./assets/audios/vinyl-funk-166763.mp3";
+import FadeInText from "./reusableComponents/FadeInText";
 import { FeatureDetails } from "./FeatureDetails";
+import Walkthrough from "./Walkthrough";
+import { Features } from "./Features";
+import EndScreen from "./EndScreen";
+import Credits from "./Credits";
+import Intro from "./Intro";
 import {
   creditsDuration,
   endScreenDuration,
@@ -12,13 +19,6 @@ import {
   introDuration,
   walkthroughDuration,
 } from "./Root";
-import { useCardContext as useFeatureCardContext } from "./Features/CardContext";
-import { useCardContext as useFeatureDetailCardContext } from "./FeatureDetails/CardContext";
-import Credits from "./Credits";
-import EndScreen from "./EndScreen";
-import vinyl from "./assets/audios/vinyl-funk-166763.mp3";
-import FadeInText from "./reusableComponents/FadeInText";
-import Walkthrough from "./Walkthrough";
 // #region these two audios are really good!
 // import leva from "./assets/audios/leva-eternity-149473.mp3";
 // import we from "./assets/audios/we-made-it-promo-indie-rock-190174.mp3";
@@ -39,22 +39,6 @@ export const Low: React.FC<props> = ({ data }) => {
 
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
-      {/* <Audio
-        src={vinyl}
-        volume={0.15}
-        startFrom={mainAudioStartFrame}
-        endAt={altAudioStartFrame} // Stop main audio temporarily
-      /> */}
-
-      {/* Alternate Audio */}
-      {/* {altAudioStartFrame && (
-        <Sequence
-          from={altAudioStartFrame}
-          durationInFrames={altAudioEndFrame - altAudioStartFrame}
-        >
-          <Audio src={moonMen} volume={0.55} />
-        </Sequence>
-      )} */}
       <Audio volume={0.15} src={vinyl} />
       <TransitionSeries>
         {/* Intro */}
@@ -187,14 +171,14 @@ export const Low: React.FC<props> = ({ data }) => {
           timing={linearTiming({ durationInFrames: 40 })}
         />
 
-        {/* EndScreen */}
-        <TransitionSeries.Sequence durationInFrames={endScreenDuration}>
-          <EndScreen />
-        </TransitionSeries.Sequence>
-
         {/* Credits */}
         <TransitionSeries.Sequence durationInFrames={creditsDuration}>
           <Credits />
+        </TransitionSeries.Sequence>
+
+        {/* EndScreen */}
+        <TransitionSeries.Sequence durationInFrames={endScreenDuration}>
+          <EndScreen />
         </TransitionSeries.Sequence>
       </TransitionSeries>
     </AbsoluteFill>

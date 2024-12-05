@@ -31,6 +31,7 @@
   "scripts": {
     "start": "remotion studio",
     "build": "remotion render Low out/video.mp4",
+    "build-debug": "remotion render Low out/video.mp4 --log=verbose",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
   },

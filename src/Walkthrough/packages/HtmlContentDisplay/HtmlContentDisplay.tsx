@@ -271,7 +271,7 @@ const HtmlContentDisplay: React.FC<props> = ({ post, attr, onScaleChange }) => {
               </div>
             ))
           ) : (
-            <>Sorry, we are also unaware of this word!</>
+            <>Sorry, we are unaware of this word!</>
           )}
         </AsideSection>
       )}

@@ -31,7 +31,7 @@ const Credits: React.FC = () => {
   });
   const [showIt, setShowIt] = useState(false); // yes, I am bad at naming
   const [startFrame, setStartFrame] = useState<number | null>(null);
-  const moveRight = interpolate(
+  const moveLeft = interpolate(
     progress,
     [0, 1],
     showIt ? [-20.5, 0] : [-20.5, -20.5]
@@ -65,13 +65,16 @@ const Credits: React.FC = () => {
       }}
     >
       <Audio src={Oops} />
-      <h1
-        style={{
-          fontSize: "5rem",
-        }}
-      >
-        Special Thanks to
-      </h1>
+      <section>
+        <h1
+          style={{
+            fontFamily: "'Space Mono', monospace",
+            fontSize: "5rem",
+          }}
+        >
+          Special Thanks to
+        </h1>
+      </section>
       <section
         style={{
           display: "flex",
@@ -107,7 +110,7 @@ const Credits: React.FC = () => {
           style={{
             position: "absolute",
             top: "50%",
-            right: moveRight + "%",
+            right: moveLeft + "%",
             display: "flex",
             alignItems: "center",
             backgroundColor: "yellow",
