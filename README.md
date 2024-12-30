@@ -9,6 +9,8 @@
   </a>
 </p>
 
+Check out the project here: [GitHub](https://github.com/playstore777/low), [Live demo](https://low-pi.vercel.app)
+
 [Watch the video](https://playstore777.github.io/dyna-motion/out/video.mp4)
 
 <video controls>
